@@ -9,7 +9,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab2Page {
 
-  title = "Grocery";
+  title = "Groceries";
 
   items = [
     {
@@ -29,10 +29,11 @@ export class Tab2Page {
       quantity: 1    
     },
   ];
+  alertController: any;
 
 
 
-  constructor(public toastCtrl: ToastController, public alertCtrl: AlertController) {
+  constructor(public toastCtrl: ToastController, private alertCtrl: AlertController) {
 
   }
 
@@ -53,13 +54,13 @@ export class Tab2Page {
   }
 
   async showAddItemPrompt() {
-    const prompt = this.alertCtrl.create({
-      title: 'Add Item',
+    const alert = await this.alertCtrl.create({
+      header: 'Add Item',
       message: "Please enter item...",
       inputs: [
         {
           name: 'name',
-          placeholder: 'Name'
+          placeholder: 'Item Name'
         },
         {
           name: 'quantity',
@@ -82,7 +83,7 @@ export class Tab2Page {
         }
       ]
     });
-    (await prompt).present();
+    await alert.present();
   }
 
 }
